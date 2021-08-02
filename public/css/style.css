@@ -1,7 +1,13 @@
-body {
+/* body {
     background-color: #ffe6f3;
-}
+} */
 
 #id {
     color: white;
+}
+
+#statcard {
+    height: 20rem;
+    width: 20rem;
+    margin: auto;
 }

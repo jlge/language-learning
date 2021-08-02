@@ -6,14 +6,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-
-    <title>Hello World!</title>
-
-    <!-- Import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
-
-    <!-- Import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
+    <link rel="icon" href="https://img.icons8.com/bubbles/2x/language.png" />
+    <title>Home</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- <script src="js/script.js" defer></script> -->
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -42,8 +38,8 @@
     <section class="hero is-fullheight">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <div class="columns is-8 is-variable ">
-            <div class="column is-two-thirds has-text-left">
+          <div class="columns is-variable is-desktop">
+            <div class="column has-text-left">
               <h1 class="title is-1">HOME</h1>
               <h1 class="title is-3">
                 Welcome,
@@ -66,10 +62,20 @@
               </nav>
             </div>
 
-            <div class="column is-one-third has-text-left">
-              <h1 class="title is-3">
-                Today you:
-              </h1>
+            <div class="column has-text-centered">
+                <div class="card"  id="statcard">
+                    <div class="card-content">
+                        <h1 class="title is-3">
+                            Today you:
+                        </h1>
+                        <div class="content has-text-left is-size-5">
+                            <ul>
+                                <li>did __ questions</li>
+                                <li>gained __ points</li>
+                            </ul>    
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>
