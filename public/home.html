@@ -9,7 +9,15 @@
     <link rel="icon" href="https://img.icons8.com/bubbles/2x/language.png" />
     <title>Home</title>
     <link rel="stylesheet" href="css/style.css" />
-    <!-- <script src="js/script.js" defer></script> -->
+    <script src="js/home.js" defer></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
+    <!-- Initialize Firebase -->
+    <script defer src="/__/firebase/init.js"></script>
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -41,7 +49,7 @@
           <div class="columns is-variable is-desktop">
             <div class="column has-text-left">
               <h1 class="title is-1">HOME</h1>
-              <h1 class="title is-3">
+              <h1 class="title is-3" id="welcome">
                 Welcome,
               </h1>
               <h1 class="title is-4">
