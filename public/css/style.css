@@ -11,3 +11,11 @@
     width: 20rem;
     margin: auto;
 }
+
+#addFlashcards {
+    background-color: #cccccc;
+}
+
+.hidden {
+    display: none;
+}
