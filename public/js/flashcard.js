@@ -22,7 +22,14 @@ function addFlashcard(num) {
         card += 1;
         addFlashcardSection.innerHTML += `
             <div class="field" id=card${card}>
-                <label class="label">${card}</label>
+                <div class="columns">
+                    <div class="column">
+                        <label class="label">${card}</label>
+                    </div>
+                    <div class="column has-text-right">
+                        <button class="button is-small"><span class="icon"><i class="far fa-trash-alt"></i></span></button>
+                    </div>
+                </div>
                 <div class="field is-horizontal">
                     <div class="field-body">
                         <div class="field">
@@ -37,7 +44,7 @@ function addFlashcard(num) {
                         </div>
                     </div>
                 </div>
-            </div>    
+            </div> <br>    
         `;
     }
     numFlashcards += num;
