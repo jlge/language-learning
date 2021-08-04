@@ -4,6 +4,7 @@ const flashcardModalBody = document.querySelector("#flashcardModalBody");
 const addFlashcardSection = document.querySelector("#flashcards");
 const flashcardTitleInput = document.querySelector("#flashcardTitle");
 const flashcardDescrInput = document.querySelector("#flashcardDescription");
+const flashcardSearch = document.querySelector("#flashcardSearch");
 let numFlashcards = 0;
 let googleUser;
 

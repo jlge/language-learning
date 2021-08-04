@@ -46,10 +46,16 @@
     </nav>
     <br />
     <div class="hero-body">
-      <p class="title has-text-centered">
-        Flashcard Sets
-        <a href="#flashcardModal"><button class="button is-rounded" onclick="toggleModal()">+</button></a>
-      </p>
+        <p class="title has-text-centered">
+            Flashcard Sets
+            <a href="#flashcardModal"><button class="button is-rounded" onclick="toggleModal()">+</button></a>
+        </p>
+        <p class="control has-icons-right" id="flashcardSearchDiv">
+            <input class="input" type="text" id="flashcardSearch" placeholder="Search">
+            <span class="icon is-right">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+        </p>
         <div class="modal" id="flashcardModal">
             <div class="modal-background"></div>
             <div class="modal-card">
