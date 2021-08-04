@@ -5,6 +5,7 @@ const addFlashcardSection = document.querySelector("#flashcards");
 const flashcardTitleInput = document.querySelector("#flashcardTitle");
 const flashcardDescrInput = document.querySelector("#flashcardDescription");
 const flashcardSearch = document.querySelector("#flashcardSearch");
+const flashcardDropdown = document.querySelector("#flashcardDropdown");
 let numFlashcards = 0;
 let googleUser;
 
@@ -14,6 +15,7 @@ window.onload = (event) => {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
       googleUser = user;
+      getFlashcardSets(user.uid);
     } else {
       window.location = 'index.html'; // If not logged in, navigate back to login page.
     }
@@ -106,3 +108,31 @@ function clearFlashcardForm() {
     document.querySelector("#flashcardTitleReq").classList.add("hidden");
     flashcardTitleInput.classList.remove("is-danger");
 }
+
+function getFlashcardSets(userId) {
+    const flashcardsRef = firebase.database().ref(`users/${userId}/flashcard-sets`)
+    flashcardsRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        console.log(data);
+        renderFlashcards(data);
+    })
+}
+
+function renderData(data){
+    let html = '';
+    for (const dataKey in data) {
+        const note = data[dataKey];
+        const cardHtml = renderFlashcard(note);
+        html += cardHtml;
+    }
+    document.querySelector('#app').innerHTML = html;        
+}
+
+function renderFlashcard(){
+
+}
+
+// function showDropdown() {
+//     const dropdown = document.querySelector('.dropdown');
+//     dropdown.classList.toggle("is-active");
+// }
