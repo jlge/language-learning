@@ -2,12 +2,16 @@ const addFlashcardBtn = document.querySelector("#addFlashcard");
 const flashcardModal = document.querySelector("#flashcardModal");
 const flashcardModalBody = document.querySelector("#flashcardModalBody");
 const addFlashcardSection = document.querySelector("#flashcards");
+const flashcardTitleInput = document.querySelector("#flashcardTitle");
+const flashcardDescrInput = document.querySelector("#flashcardDescription");
 let numFlashcards = 0;
 
 function toggleModal() {
     numFlashcards = 0;
     addFlashcardSection.innerHTML = "";
     addFlashcard(5);
+    clearFlashcardForm();
+
     flashcardModal.classList.toggle("is-active");
     flashcardModalBody.scrollTop = 0;
 }
@@ -42,4 +46,9 @@ function addFlashcard(num) {
 
 function createNewSet() {
     console.log("create clicked");
+}
+
+function clearFlashcardForm() {
+    flashcardTitleInput.value = "";
+    flashcardDescrInput.value = "";
 }
