@@ -5,6 +5,19 @@ const addFlashcardSection = document.querySelector("#flashcards");
 const flashcardTitleInput = document.querySelector("#flashcardTitle");
 const flashcardDescrInput = document.querySelector("#flashcardDescription");
 let numFlashcards = 0;
+let googleUser;
+
+window.onload = (event) => {
+  // Use this to retain user state between html pages.
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('Logged in as: ' + user.displayName);
+      googleUser = user;
+    } else {
+      window.location = 'index.html'; // If not logged in, navigate back to login page.
+    }
+  });
+};
 
 function toggleModal() {
     numFlashcards = 0;
@@ -52,42 +65,29 @@ function addFlashcard(num) {
 }
 
 function createNewSet() {
-    // 1. Capture the form data
     if (checkFlashcardInputs()) {
         let cardFront, cardBack;
+        firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}`).child("description").set(
+            flashcardDescrInput.value
+        );
         
         for (let i = 0; i < numFlashcards; i++) {
             //console.log("collect data for flashcard " + i);
             cardFront = document.querySelector(`#card${i+1}Front`);
             cardBack = document.querySelector(`#card${i+1}Back`);
-            console.log("front " + cardFront.value);
-            console.log("back " + cardBack.value);
-            // if (cardFront != "" && cardBack !="") {
-            //     firebase.database().ref(`users/${googleUser.uid}/flashcards/${flashcardTitleInput.value}`).push({
-            //         front: cardFront.value,
-            //         back: cardBack.value
-            //     });
-            //     console.log("written");
-            // }
-        }
-        
-        // 2. Format the data and write it to our database
-        // firebase.database().ref(`users/${googleUser.uid}/flashcards/${flashcardTitleInput.value}`).push({
-        //     title: noteTitle.value,
-        //     text: noteText.value
-        // })
-        // 3. Clear the form so that we can write a new note
-        // .then(() => {
-        //     clearFlashcardForm();
-        // });    
-        
+            if ((cardFront.value != "") && (cardBack.value != "")) {
+                firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}/cards`).push({
+                    front: cardFront.value,
+                    back: cardBack.value
+                });
+            }
+        }        
         toggleModal();
     }     
 }
 
 function checkFlashcardInputs() {
     let valid = true;
-
     if (flashcardTitleInput.value == "") {
         valid = false;
         document.querySelector("#flashcardTitleReq").classList.remove("hidden");
@@ -96,11 +96,12 @@ function checkFlashcardInputs() {
         document.querySelector("#flashcardTitleReq").classList.add("hidden");
         flashcardTitleInput.classList.remove("is-danger");
     }
-
-    return false;
+    return valid;
 }
 
 function clearFlashcardForm() {
     flashcardTitleInput.value = "";
     flashcardDescrInput.value = "";
+    document.querySelector("#flashcardTitleReq").classList.add("hidden");
+    flashcardTitleInput.classList.remove("is-danger");
 }
