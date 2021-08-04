@@ -48,11 +48,56 @@ function addFlashcard(num) {
         `;
     }
     numFlashcards += num;
-    console.log("numcards " + numFlashcards);  
+    //console.log("numcards " + numFlashcards);  
 }
 
 function createNewSet() {
-    console.log("create clicked");
+    // 1. Capture the form data
+    if (checkFlashcardInputs()) {
+        let cardFront, cardBack;
+        
+        for (let i = 0; i < numFlashcards; i++) {
+            //console.log("collect data for flashcard " + i);
+            cardFront = document.querySelector(`#card${i+1}Front`);
+            cardBack = document.querySelector(`#card${i+1}Back`);
+            console.log("front " + cardFront.value);
+            console.log("back " + cardBack.value);
+            // if (cardFront != "" && cardBack !="") {
+            //     firebase.database().ref(`users/${googleUser.uid}/flashcards/${flashcardTitleInput.value}`).push({
+            //         front: cardFront.value,
+            //         back: cardBack.value
+            //     });
+            //     console.log("written");
+            // }
+        }
+        
+        // 2. Format the data and write it to our database
+        // firebase.database().ref(`users/${googleUser.uid}/flashcards/${flashcardTitleInput.value}`).push({
+        //     title: noteTitle.value,
+        //     text: noteText.value
+        // })
+        // 3. Clear the form so that we can write a new note
+        // .then(() => {
+        //     clearFlashcardForm();
+        // });    
+        
+        toggleModal();
+    }     
+}
+
+function checkFlashcardInputs() {
+    let valid = true;
+
+    if (flashcardTitleInput.value == "") {
+        valid = false;
+        document.querySelector("#flashcardTitleReq").classList.remove("hidden");
+        flashcardTitleInput.classList.add("is-danger");
+    } else {
+        document.querySelector("#flashcardTitleReq").classList.add("hidden");
+        flashcardTitleInput.classList.remove("is-danger");
+    }
+
+    return false;
 }
 
 function clearFlashcardForm() {

@@ -54,7 +54,7 @@
                         <div class="control">
                         <input class="input" type="text" id="flashcardTitle" required>
                         </div>
-                        <p class="help is-danger hidden">
+                        <p class="help is-danger hidden" id="flashcardTitleReq">
                             This field is required
                         </p>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="control">
                         <input class="input" type="text" id="flashcardDescription">
                         </div>
-                        <p class="help is-danger hidden">
+                        <p class="help is-danger hidden" id="flashcardDescriptionReq">
                             This field is required
                         </p>
                     </div> <br>
@@ -74,7 +74,7 @@
                     </div>               
                 </section>
                 <footer class="modal-card-foot">
-                    <button class="button is-success is-outlined" id="flashcardSave">Save</button>
+                    <button class="button is-success is-outlined" id="flashcardSave" onclick="createNewSet()">Save</button>
                     <button class="button" id="flashcardCancel" onclick="toggleModal()">Cancel</button>
                 </footer>
             </div>
