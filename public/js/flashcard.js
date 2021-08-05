@@ -15,7 +15,7 @@ window.onload = (event) => {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
       googleUser = user;
-    //   getFlashcardSets(user.uid);
+      getFlashcardSets(user.uid);
     } else {
       window.location = 'index.html'; // If not logged in, navigate back to login page.
     }
@@ -68,31 +68,27 @@ function addFlashcard(num) {
 }
 
 function createNewSet() {
-    if (checkFlashcardInputs()) {
-        let cardFront, cardBack;
-        firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}`).child("description").set(
-            flashcardDescrInput.value
-        );
+    let data = `{"cards": {`;
+    let cardFront, cardBack;
+
+    if (checkFlashcardInputs()) {        
+        for (let i = 0; i < numFlashcards; i++) {
+            cardFront = document.querySelector(`#card${i+1}Front`);
+            cardBack = document.querySelector(`#card${i+1}Back`);
+            if ((cardFront.value != "") && (cardBack.value != "")) {
+                data += `"${i+1}": {"back":"${cardFront.value}", "front":"${cardBack.value}"},`;
+            } 
+        }
+        data = data.slice(0, -1) + "},";
 
         const today = new Date();
         const date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
         const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         const dateTime = date + ' ' + time;
-        firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}`).child("created").set(
-            dateTime
-        );
-        
-        for (let i = 0; i < numFlashcards; i++) {
-            //console.log("collect data for flashcard " + i);
-            cardFront = document.querySelector(`#card${i+1}Front`);
-            cardBack = document.querySelector(`#card${i+1}Back`);
-            if ((cardFront.value != "") && (cardBack.value != "")) {
-                firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}/cards`).push({
-                    front: cardFront.value,
-                    back: cardBack.value
-                });
-            }
-        }        
+
+        data += `"created":"${dateTime}", "description":"${flashcardDescrInput.value}"}`;
+        const dataJSON = JSON.parse(data);
+        firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}`).set(dataJSON);        
         toggleModal();
     }     
 }
@@ -117,41 +113,46 @@ function clearFlashcardForm() {
     flashcardTitleInput.classList.remove("is-danger");
 }
 
-// function getFlashcardSets(userId) {
-//     const flashcardsRef = firebase.database().ref(`users/${userId}/flashcard-sets`)
-//     flashcardsRef.on('value', (snapshot) => {
-//         const data = snapshot.val();
-//         console.log(data);
-//         renderFlashcards(data);
-//     })
-// }
+function getFlashcardSets(userId) {
+    const flashcardsRef = firebase.database().ref(`users/${userId}/flashcard-sets`)
+    flashcardsRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        renderData(data);
+    })
+}
 
-// function renderData(data){
-//     let html = '';
-//     for (const dataKey in data) {
-//         const note = data[dataKey];
-//         const cardHtml = renderFlashcard(set);
-//         html += cardHtml;
-//     }
-//     document.querySelector('#flashcardSets').innerHTML = html;        
-// }
+function renderData(data){
+    let html = '';
+    for (const dataKey in data) {
+        const set = data[dataKey];
+        const cardHtml = renderFlashcard(dataKey, set);
+        html += cardHtml;
+    }
+    document.querySelector('#flashcardSets').innerHTML = html;        
+}
 
-// let counter = 0;
-// function renderFlashcard(set){
-//     counter++;
+let counter = 0;
+function renderFlashcard(title, set){
+    counter++;
+    let numCards = Object.keys(set.cards).length;
+    if (numCards == 1) {
+        numCards += " term";
+    } else {
+        numCards += " terms";
+    }
 
-//     return `
-//              <div class="box">
-//                 <div class="has-text-grey">
-//                     ${set.length} terms | Created ${set.created}
-//                 </div>
-//                 <div class="is-size-5">
-//                     <b>${}</b>
-//                 </div>
-//             </div>       
+    return `
+             <div class="box">
+                <div class="has-text-grey">
+                    ${numCards} | Created ${set.created}
+                </div>
+                <div class="is-size-5">
+                    <b>${title}</b>
+                </div>
+            </div>       
     
-//     `;
-// }
+    `;
+}
 
 // function showDropdown() {
 //     const dropdown = document.querySelector('.dropdown');
