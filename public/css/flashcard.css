@@ -35,3 +35,7 @@
 .trash:hover {
     color: #ffb4bc;
 }
+
+.hidden {
+    display: none;
+}
