@@ -2,16 +2,107 @@
     background-color: #ffe6f3;
 } */
 
+html {
+  background: #fff;
+  color: #000;
+}
+
 #id {
     color: white;
 }
 
-#statcard {
+* #statcard {
     height: 20rem;
     width: 20rem;
     margin: auto;
 }
 
+.dark {
+  background: #333333;
+  color: white
+}
+
+.dark-nav {
+  background: lightgray;
+  color: white
+}
+
+.dark-text {
+    color: white;
+}
+
+.dark-title {
+    color: lightgray;
+}
+
+.dark-welcome {
+    color: lightgray
+}
+
+.dark-question {
+    color: lightgray
+}
+
+.switched {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 25vh;
+  transition: background-color 600ms;
+  
+}
+
+input[type=checkbox]{
+  visibility: hidden;
+  
+}
+
+.switchBox {
+  width: 40px;
+  height: 10px;
+  background: gray;
+  position: relative;
+  border-radius: 3px;
+}
+
+label {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: all .6s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background:
+} #333333;
+  
+}
+
+input[type=checkbox]:checked + label {
+    left: 27px;
+    background: #f7f7f7;
+  
+}
+
+
+
+video {
+  background-color: #ddd;
+  border-radius: 7px;
+  margin: 10px 0px 0px 250px;
+  width: 320px;
+  height: 240px;
+}
+
+#videocallbtn {
+  margin: 20px 0px 0px 360px !important;
+  width: 654px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 8px;
+
 .hidden {
     display: none;
-}
