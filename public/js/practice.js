@@ -12,7 +12,6 @@ const verbsList = ["peck",
 "float",
 "empty",
 "expect",
-"blind",
 "trick",
 "wait",
 "help",
@@ -28,7 +27,6 @@ const verbsList = ["peck",
 "queue",
 "fence",
 "notice",
-"branch",
 "remove",
 "return",
 "slip",
@@ -109,14 +107,12 @@ const verbsList = ["peck",
 "hover",
 "scream",
 "haunt",
-"thaw",
 "coil",
 "dust",
 "bless",
 "plan",
 "turn",
 "cover",
-"scold",
 "telephone",
 "receive",
 "visit",
@@ -166,7 +162,6 @@ const verbsList = ["peck",
 "earn",
 "trot",
 "mark",
-"sneeze",
 "walk",
 "chase",
 "balance",
@@ -192,7 +187,6 @@ const verbsList = ["peck",
 "label",
 "employ",
 "matter",
-"last",
 "discover",
 "heap",
 "untidy",
@@ -204,7 +198,6 @@ const verbsList = ["peck",
 "blink",
 "hook",
 "trouble",
-"sprout",
 "squeak",
 "brake",
 "sack",
@@ -235,7 +228,6 @@ const verbsList = ["peck",
 "observe",
 "spot",
 "offer",
-"zoom",
 "injure",
 "cross",
 "supply",
@@ -254,7 +246,6 @@ const verbsList = ["peck",
 "punish",
 "arrive",
 "dare",
-"peel",
 "analyze",
 "frighten",
 "suit",
@@ -333,7 +324,6 @@ const verbsList = ["peck",
 "step",
 "ask",
 "milk",
-"rejoice",
 "stop",
 "like",
 "agree",
@@ -353,7 +343,6 @@ const verbsList = ["peck",
 "shelter",
 "tempt",
 "advise",
-"knot",
 "warn",
 "preach",
 "describe",
@@ -374,7 +363,6 @@ const verbsList = ["peck",
 "suspect",
 "reduce",
 "bruise",
-"grate",
 "interfere",
 "mug",
 "surprise",
@@ -388,7 +376,6 @@ const verbsList = ["peck",
 "wreck",
 "pedal",
 "screw",
-"stitch",
 "guess",
 "yell",
 "moor",
@@ -434,7 +421,6 @@ const verbsList = ["peck",
 "train",
 "protect",
 "moan",
-"clap",
 "bomb",
 "desert",
 "fold",
@@ -481,7 +467,6 @@ const verbsList = ["peck",
 "joke",
 "scrub",
 "dance",
-"count",
 "precede",
 "learn",
 "influence",
@@ -493,11 +478,9 @@ const verbsList = ["peck",
 "pat",
 "worry",
 "refuse",
-"beam",
 "object",
 "jog",
 "intend",
-"live",
 "fear",
 "drip",
 "fry",
@@ -506,7 +489,6 @@ const verbsList = ["peck",
 "store",
 "identify",
 "present",
-"undress",
 "shave",
 "squeal",
 "wish",
@@ -523,12 +505,9 @@ const verbsList = ["peck",
 "promise",
 "scratch",
 "explode",
-"mend",
 "obey",
-"blush",
 "apologise",
 "fade",
-"sparkle",
 "push",
 "flap",
 "rescue",
@@ -598,14 +577,12 @@ const verbsList = ["peck",
 "order",
 "inform",
 "laugh",
-"bathe",
 "encourage",
 "book",
 "glow",
 "destroy",
 "drain",
 "greet",
-"itch",
 "spare",
 "retire",
 "kill",
@@ -636,7 +613,6 @@ const subjectsList = [
     "man", 
     "woman", 
     "officer",
-    "they",
     "cat",
     "parrot",
     "dog",
@@ -1527,54 +1503,120 @@ const objectsList =["jail",
 
 const verbTenseList= ["present", "past", "future"];
 
+const sentenceDisplay = document.querySelector("#sentence");
+const infinitiveForm = document.querySelector("#infinitive");
+const verbInput = document.querySelector("#verb-input");
+
+let counter;
+
+
 
 function randomArrayPicker(array) {
     return array[Math.floor(Math.random() * array.length)]
 }
+
+function newSentence() {
     const subject = randomArrayPicker(subjectsList);
     const object = randomArrayPicker(objectsList);
     const verb = randomArrayPicker(verbsList);
-    const tense = randomArrayPicker(verbTenseList);
 
     console.log(verb)
 
-function urlBuilder () {
-    let url = `https://lt-nlgservice.herokuapp.com/rest/english/realise?subject=${subject}&object=${object}&verb=${verb}&tense=${tense}`
+    let url = `https://lt-nlgservice.herokuapp.com/rest/english/realise?subject=${subject}&object=${object}&verb=${verb}`
 
-    const randomNum = Math.floor(Math.random() * 10);
 
-    if (randomNum == 1) {
-        url += "&progressive=progressive"
-    } else if (randomNum == 2) {
-        url += "&perfect=perfect"
-    } else if (randomNum == 3) {
-        url += "&passive=passive"
-    }
 
-    return url;
-}
 
-const sentenceDisplay = document.querySelector("#sentence");
 
-const url = urlBuilder();
+
+let sentence;
   
   fetch(url)
     .then(response => response.json())
     .then(json => {
-    console.log(json);
-    sentenceDisplay.innerHTML = json.sentence;
-    
+     sentence = json.sentence;
   })
     .catch(error => console.log(error));
 
-    /*
+    
 conjUrl = `https://lt-nlgservice.herokuapp.com/rest/english/conjugate?verb=${verb}`
 
     fetch(conjUrl)
     .then(response => response.json())
     .then(json => {
-    console.log(json);
+    for (type in json.conjugation_tables.indicative) {
+        if(json.conjugation_tables.indicative[type].heading == "simple present") {
+            for (tenseConj in json.conjugation_tables.indicative[type].forms) {
+                if (json.conjugation_tables.indicative[type].forms[tenseConj].includes("he/she/it")) {
+                    verbForm = (json.conjugation_tables.indicative[type].forms[tenseConj][1])
+                    let infinitive = "(to " + verb + ")";
+                    let firstPart = sentence.slice(0, sentence.indexOf(verbForm))
+                    let secondPart = sentence.slice(sentence.indexOf(verbForm)+verbForm.length, -1)
+                    sentenceDisplay.innerHTML = `
+                    ${firstPart} <span  class="title has-text-centered" id="infinitive">${infinitive} </span><input style="width: 33%;" class="input is-info"  id="verb-input" type="text"> </input> ${secondPart}.
+
+                    `;
+                    verbInput.value = "";
+                    console.log(verbInput.value)
+
+                }
+            }
+        }
+        
+    }
+    
+
     
   })
     .catch(error => console.log(error));
-    */
+
+}
+
+let verbForm;
+
+const checkVerb = document.querySelector("#check-verb");
+
+function checkVerbMatching() {
+    const verbInput = document.querySelector("#verb-input");
+    if (verbInput.value == verbForm) {
+        console.log("yay!")
+    } else if (verbInput.value == "bites") {
+        console.log("start")
+    }
+}
+
+let googleUser;
+
+window.onload = (event) => {
+getScore();    
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {  
+        console.log("logged in as", user.displayName);
+        googleUser = user;
+    } else {
+        window.location = "index.html";
+    }
+    
+});
+}
+
+
+
+firebase.database().ref(`users/${googleUser.uid}/scores`).push( {
+    verbscore: counter
+}) 
+
+function getScore () {
+  const notesRef = firebase.database().ref(`users/${userId}/scores`);
+  notesRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    updateScore(data);
+  });
+}
+
+function updateScore(data) {
+    for (x in data) {
+        console.log(data[x])
+    }
+
+}

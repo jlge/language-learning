@@ -8,6 +8,14 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
 
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
+
     <title>Practice</title>
     <link rel="stylesheet" href="css/style.css" />
     <!-- <script src="/script.js" defer></script> -->
@@ -43,7 +51,12 @@
           Fill in the blank with the correct verb conjugation.
         </p>
         <p class="title has-text-centered" id="sentence">
+           The dog <span  class="title has-text-centered" id="infinitive">(to bite) </span><input style="width: 33%;" class="input is-info" placeholder="bites" id="verb-input" type="text"> </input> a tree.
         </p>
+
+        <button id="check-verb" class="button is-info" onclick="checkVerbMatching()">Submit</button>
+        <button class="button is-primary" onclick=newSentence()>Next</button>
+
       </div>
     </section>
     <br />
