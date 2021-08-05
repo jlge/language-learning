@@ -149,9 +149,12 @@ function renderFlashcard(title, set){
 
     return `
             <div class="box flashcards" id="set${counter}" onclick='toPractice("${title}")'>
-            <div class="level">
+            <div class="level" style="margin:0;">
                 <div class="has-text-grey">
                     ${numCards} | Created ${set.created}
+                </div>
+                <div class="column has-text-right">
+                    <button class="button is-small trash" onclick='removeSet("${title}")'><span class="icon"><i class="far fa-trash-alt"></i></span></button>
                 </div>
             </div>
                 <div class="is-size-5">
@@ -164,7 +167,14 @@ function renderFlashcard(title, set){
 function toPractice(flashcardSet) {
     sessionStorage.setItem("setTitle", flashcardSet);
     
-    location.href="flashcardpractice.html";
+    if (sessionStorage.getItem("removed") != flashcardSet) {
+        location.href="flashcardpractice.html";
+    }
+}
+
+function removeSet(set) {
+    sessionStorage.setItem("removed", set);
+    firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${set}`).remove();
 }
 
 // function showDropdown() {

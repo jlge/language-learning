@@ -27,3 +27,11 @@
 #addFlashcardSet:hover {
     border: 0.08rem solid #ffb4bc;
 }
+
+.trash {
+    border: transparent;
+}
+
+.trash:hover {
+    color: #ffb4bc;
+}
