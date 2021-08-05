@@ -13,6 +13,7 @@ if (localStorage.getItem('theme') === 'dark') {
 const addFlashcardBtn = document.querySelector("#addFlashcard");
 const flashcardModal = document.querySelector("#flashcardModal");
 const flashcardModalBody = document.querySelector("#flashcardModalBody");
+const deleteModal = document.querySelector("#deleteModal");
 const addFlashcardSection = document.querySelector("#flashcards");
 const flashcardTitleInput = document.querySelector("#flashcardTitle");
 const flashcardDescrInput = document.querySelector("#flashcardDescription");
@@ -41,6 +42,12 @@ function toggleModal() {
 
     flashcardModal.classList.toggle("is-active");
     flashcardModalBody.scrollTop = 0;
+}
+
+function toggleDeleteModal(set) {
+    sessionStorage.setItem("removed", set);
+    
+    deleteModal.classList.toggle("is-active");
 }
 
 function setUpFlashcards() {
@@ -160,9 +167,12 @@ function renderFlashcard(title, set){
 
     return `
             <div class="box flashcards" id="set${counter}" onclick='toPractice("${title}")'>
-            <div class="level">
+            <div class="level" style="margin:0;">
                 <div class="has-text-grey">
                     ${numCards} | Created ${set.created}
+                </div>
+                <div class="column has-text-right">
+                    <button class="button is-small trash" onclick='toggleDeleteModal("${title}")'><span class="icon"><i class="far fa-trash-alt"></i></span></button>
                 </div>
             </div>
                 <div class="is-size-5">
@@ -170,16 +180,28 @@ function renderFlashcard(title, set){
                 </div>
             </div>       
     `;
+    //removeSet("${title}")
 }
 
 function toPractice(flashcardSet) {
     sessionStorage.setItem("setTitle", flashcardSet);
     
-    location.href="flashcardpractice.html";
+    if (sessionStorage.getItem("removed") != flashcardSet) {
+        console.log("switch to practice");
+        // location.href="flashcardpractice.html";
+    } 
+}
+
+function removeSet() {
+    let set = sessionStorage.getItem("removed");
+    console.log("delete set " + set);
+    firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${set}`).remove();
+    toggleDeleteModal(set);
 }
 
 // function showDropdown() {
 //     const dropdown = document.querySelector('.dropdown');
 //     dropdown.classList.toggle("is-active");
 // }
+
 
