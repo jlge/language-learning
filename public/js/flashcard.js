@@ -5,10 +5,6 @@ let numFlashcards = 0;
 const html = document.querySelector('html')
 const nav = document.querySelector('nav')
 
-if (localStorage.getItem('theme') === 'dark') {
-    html.classList.add('dark');
-    nav.classList.add('dark-nav');
-}
 
 const addFlashcardBtn = document.querySelector("#addFlashcard");
 const flashcardModal = document.querySelector("#flashcardModal");
@@ -183,3 +179,7 @@ function toPractice(flashcardSet) {
 //     dropdown.classList.toggle("is-active");
 // }
 
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    nav.classList.add('dark-nav');
+}

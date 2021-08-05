@@ -3,7 +3,7 @@
 } */
 
 html {
-  background: #fff;
+  background: #ffdbdf;
   color: #000;
 }
 
@@ -18,8 +18,7 @@ html {
 }
 
 .dark {
-  background: #333333;
-  color: white
+  background: #fcb6bd;
 }
 
 .dark-nav {
@@ -27,21 +26,7 @@ html {
   color: white
 }
 
-.dark-text {
-    color: white;
-}
 
-.dark-title {
-    color: lightgray;
-}
-
-.dark-welcome {
-    color: lightgray
-}
-
-.dark-question {
-    color: lightgray
-}
 
 .switched {
   display: flex;
@@ -76,8 +61,8 @@ label {
     position: absolute;
     top: -3px;
     left: -3px;
-    background:
-} #333333;
+    background: #333333;
+
   
 }
 
@@ -103,6 +88,134 @@ video {
   height: 50px;
   font-size: 20px;
   border-radius: 8px;
+}
 
 .hidden {
     display: none;
+}
+
+#leftFlashcard, #rightFlashcard {
+    border: transparent;
+}
+
+#leftFlashcard:focus, #rightFlashcard:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#leftFlashcard:hover, #rightFlashcard:hover {
+    color: #ffb4bc;
+}
+
+#leftFlashcard:disabled, #rightFlashcard:disabled {
+    color: 	#A9A9A9;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 30em;
+  height: 20em;
+  perspective: 1000px;
+  margin: auto;
+  
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card.is-active .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: white;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: black;
+  transform: rotateX(180deg);
+}
+
+.flip-card p {
+    padding: 5.5em 0;
+}
+
+#cardHolder, #termNumber {
+    margin: 0 10rem;
+}
+
+.right-border{
+    border-right: 2px solid rgb(255, 224, 210);
+}
+
+.column, .button {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#flashcardSearch {
+    width: 15rem;
+}
+
+#flashcardSearchDiv {
+    text-align: right;
+}
+
+.flashcards {
+    border-bottom: 0.25rem solid transparent;
+}
+
+.flashcards:hover {
+    border-bottom: 0.25rem solid #ffb4bc;
+    cursor: pointer;
+}
+
+#addFlashcardSet {
+    border: 0.08rem solid #dbdbdb;
+}
+
+#addFlashcardSet:hover {
+    border: 0.08rem solid #ffb4bc;
+}
+
+.navbar {
+  padding-left: 11%;
+  padding-right: 15%;
+}
+
+
+.navbar-item {
+  padding: 5% 25% 5% 25%;
+}
+
+.navbar-item:hover {
+    color: fcb6bd;
+}
+
+
+.navbar-item-2 {
+    padding: 20px 30px 20px 30px;
+    color: 	#696969;
+}
+
+.navbar-item-2:hover {
+    background-color: white;
+    color: #fcb6bd;
+}
