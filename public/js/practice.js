@@ -1628,3 +1628,4 @@ function updateScore(data) {
 if (localStorage.getItem('theme') === 'dark') {
     html.classList.add('dark');
     nav.classList.add('dark-nav');
+}
