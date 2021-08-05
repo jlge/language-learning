@@ -15,7 +15,7 @@ window.onload = (event) => {
     if (user) {
       console.log('Logged in as: ' + user.displayName);
       googleUser = user;
-      getFlashcardSets(user.uid);
+    //   getFlashcardSets(user.uid);
     } else {
       window.location = 'index.html'; // If not logged in, navigate back to login page.
     }
@@ -73,6 +73,14 @@ function createNewSet() {
         firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}`).child("description").set(
             flashcardDescrInput.value
         );
+
+        const today = new Date();
+        const date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear();
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        const dateTime = date + ' ' + time;
+        firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${flashcardTitleInput.value}`).child("created").set(
+            dateTime
+        );
         
         for (let i = 0; i < numFlashcards; i++) {
             //console.log("collect data for flashcard " + i);
@@ -109,28 +117,41 @@ function clearFlashcardForm() {
     flashcardTitleInput.classList.remove("is-danger");
 }
 
-function getFlashcardSets(userId) {
-    const flashcardsRef = firebase.database().ref(`users/${userId}/flashcard-sets`)
-    flashcardsRef.on('value', (snapshot) => {
-        const data = snapshot.val();
-        console.log(data);
-        renderFlashcards(data);
-    })
-}
+// function getFlashcardSets(userId) {
+//     const flashcardsRef = firebase.database().ref(`users/${userId}/flashcard-sets`)
+//     flashcardsRef.on('value', (snapshot) => {
+//         const data = snapshot.val();
+//         console.log(data);
+//         renderFlashcards(data);
+//     })
+// }
 
-function renderData(data){
-    let html = '';
-    for (const dataKey in data) {
-        const note = data[dataKey];
-        const cardHtml = renderFlashcard(note);
-        html += cardHtml;
-    }
-    document.querySelector('#app').innerHTML = html;        
-}
+// function renderData(data){
+//     let html = '';
+//     for (const dataKey in data) {
+//         const note = data[dataKey];
+//         const cardHtml = renderFlashcard(set);
+//         html += cardHtml;
+//     }
+//     document.querySelector('#flashcardSets').innerHTML = html;        
+// }
 
-function renderFlashcard(){
+// let counter = 0;
+// function renderFlashcard(set){
+//     counter++;
 
-}
+//     return `
+//              <div class="box">
+//                 <div class="has-text-grey">
+//                     ${set.length} terms | Created ${set.created}
+//                 </div>
+//                 <div class="is-size-5">
+//                     <b>${}</b>
+//                 </div>
+//             </div>       
+    
+//     `;
+// }
 
 // function showDropdown() {
 //     const dropdown = document.querySelector('.dropdown');
