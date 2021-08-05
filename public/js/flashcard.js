@@ -187,8 +187,7 @@ function toPractice(flashcardSet) {
     sessionStorage.setItem("setTitle", flashcardSet);
     
     if (sessionStorage.getItem("removed") != flashcardSet) {
-        console.log("switch to practice");
-        // location.href="flashcardpractice.html";
+        location.href="flashcardpractice.html";
     } 
 }
 
