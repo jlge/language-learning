@@ -142,7 +142,7 @@ function renderFlashcard(title, set){
     }
 
     return `
-             <div class="box">
+            <div class="box flashcards" id="set${counter}" onclick='location.href="flashcardpractice.html"'>
                 <div class="has-text-grey">
                     ${numCards} | Created ${set.created}
                 </div>
@@ -150,7 +150,6 @@ function renderFlashcard(title, set){
                     <b>${title}</b>
                 </div>
             </div>       
-    
     `;
 }
 

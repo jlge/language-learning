@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+
+    <title>Flashcard Practice</title>
+    <link rel="stylesheet" href="css/flashcardpractice.css" />
+    <script src="https://kit.fontawesome.com/8a36ccfe40.js" crossorigin="anonymous"></script>
+    <!-- <script src="/script.js" defer></script> -->
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div id="navbarBasicExample">
+        <div class="navbar-start">
+          <a class="navbar-item" href="settings.html">
+            Settings
+          </a>
+          <a class="navbar-item" href="home.html">
+            Home
+          </a>
+          <a class="navbar-item" href="flashcard.html">
+            Flashcard
+          </a>
+          <a class="navbar-item" href="practice.html">
+            Practice
+          </a>
+          <a class="navbar-item" href="videoCall.html">
+            Video Call
+          </a>
+        </div>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="content">
+        <p class="title">
+          Flashcard Set Title
+        </p> <br /> <br />
+        <!-- <div class="card has-text-centered" id="flashcardCard">
+            <div class="card-content">
+                <div class="flip-card-front content is-size-4">
+                Front
+                </div>
+            </div>
+        </div>
+        <div class="card has-text-centered" id="flashcardCard">
+            <div class="card-content">
+                <div class="flip-card-back content is-size-4">
+                Back
+                </div>
+            </div>
+        </div> -->
+
+        <div class="flip-card" id="flippingCard">
+        <div class="flip-card-inner">
+            <div class="flip-card-front is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
+            <p>Front</p>
+            </div>
+            <div class="flip-card-back is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
+            <p>Back</p>
+            </div>
+        </div>
+        </div>
+
+        <!-- <div class="scene">
+            <div class="card" id="flashcards">
+                <div class="card__face card__face--front" onclick='document.querySelector("#flashcards").classList.toggle("is-flipped")'>
+                    Front
+                </div>
+                <div class="card__face card__face--back" onclick='document.querySelector("#flashcards").classList.toggle("is-flipped")'>
+                    Back
+                </div>
+            </div>
+        </div> -->
+
+        <br />
+        <div class="block has-text-centered" style="height: 2.5rem; line-height: 2.5rem;" id="cardFlipper">
+            <button class="button" id="leftFlashcard"><span><i class="fas fa-arrow-left"></i></span></button>
+            &nbsp;&nbsp;<span>1/1</span>&nbsp;&nbsp;
+            <button class="button" id="rightFlashcard"><span><i class="fas fa-arrow-right"></i></span></button>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
