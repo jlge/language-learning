@@ -7,11 +7,22 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-
+    <script src="https://kit.fontawesome.com/8a36ccfe40.js" crossorigin="anonymous"></script>
     <title>Flashcard</title>
+    <link rel="stylesheet" href="css/flashcard.css" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/flashcard.js" defer></script>
-    <!-- <script src="/script.js" defer></script> -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
+    <!-- Initialize Firebase -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    <script defer src="js/flashcard.js"></script>
+
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -24,7 +35,7 @@
             Home
           </a>
           <a class="navbar-item" href="flashcard.html">
-            Flashcard
+            Flashcards
           </a>
           <a class="navbar-item" href="practice.html">
             Practice
@@ -37,10 +48,80 @@
     </nav>
     <br />
     <div class="hero-body">
-      <p class="title has-text-centered">
-        Flashcard
-        <button class="button is-rounded">+</button>
-      </p>
+        <p class="title has-text-centered">
+            Flashcard Sets
+            <a href="#flashcardModal"><button class="button is-rounded" onclick="toggleModal()" id="addFlashcardSet">+</button></a>
+        </p>
+        <!-- <div class="dropdown">
+        <div class="dropdown-trigger">
+            <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3" onclick="showDropdown()">
+            <span>Click me</span>
+            <span class="icon is-small">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+            </button>
+        </div>
+        <div class="dropdown-menu" id="flashcardDropdown" role="menu">
+            <div class="dropdown-content">
+            <a href="#" class="dropdown-item">
+                Created
+            </a>
+            <a href="#" class="dropdown-item">
+                Studied
+            </a>
+            <a href="#" class="dropdown-item">
+                Alphabetically
+            </a>
+            </div>
+        </div>
+        </div> -->
+        <!-- <p class="control has-icons-right" id="flashcardSearchDiv">
+            <input class="input" type="text" id="flashcardSearch" placeholder="Search">
+            <span class="icon is-right">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </span>
+        </p> -->
+        <section class="section" id="flashcardSets">
+        </section>
+
+        <div class="modal" id="flashcardModal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Create a new flashcard set</p>
+                    <button class="delete" aria-label="close" onclick="toggleModal()"></button>
+                </header>
+                <section class="modal-card-body" id="flashcardModalBody">
+                    <div class="field">
+                        <label class="label">Title</label>
+                        <div class="control">
+                        <input class="input" type="text" id="flashcardTitle" placeholder='Add a title, like "English 101"' required>
+                        </div>
+                        <p class="help is-danger hidden" id="flashcardTitleReq">
+                            This field is required
+                        </p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Description</label>
+                        <div class="control">
+                        <input class="input" type="text" id="flashcardDescription" placeholder="Add a description...">
+                        </div>
+                        <p class="help is-danger hidden" id="flashcardDescriptionReq">
+                            This field is required
+                        </p>
+                    </div> <br>
+                    <div class="field" id="flashcards">
+                    </div>  
+                    <div class="has-text-centered">
+                        <a href="#addFlashcard"><button class="button is-outlined" id="addFlashcard" onclick="addFlashcard(1)">Add Card</button></a>
+                    </div>               
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-success is-outlined" id="flashcardSave" onclick="createNewSet()">Save</button>
+                    <button class="button" id="flashcardCancel" onclick="toggleModal()">Cancel</button>
+                </footer>
+            </div>
+        </div>      
     </div>
   </body>
 </html>

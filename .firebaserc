@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "language-learning-cssi"
+    "default": "language-learning-cssi",
+    "inssia-language": "language-learning-cssi"
   }
 }
