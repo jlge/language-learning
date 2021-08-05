@@ -10,6 +10,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/home.js" defer></script>
+    <script src="js/script.js" defer></script>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
     <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
@@ -47,11 +48,11 @@
         <div class="container has-text-centered">
           <div class="columns is-variable is-desktop">
             <div class="column has-text-left">
-              <h1 class="title is-1">HOME</h1>
+              <h1 class="title is-1" id="mainTitle">HOME</h1>
               <h1 class="title is-3" id="welcome">
                 Welcome,
               </h1>
-              <h1 class="title is-4">
+              <h1 class="title is-4" id="question">
                 How would you like to learn?
               </h1>
               <nav>
@@ -59,8 +60,8 @@
                   <a class="navbar-item" href="flashcard.html">
                     Flashcard
                   </a>
-                  <a class="navbar-item" href="verb.html">
-                    Verb
+                  <a class="navbar-item" href="practice.html">
+                    Practice
                   </a>
                   <a class="navbar-item" href="videoCall.html">
                     Video Call
