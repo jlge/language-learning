@@ -36,54 +36,48 @@
       </div>
     </nav>
     <section class="section">
-      <div class="content">
         <p class="title">
-          Flashcard Set Title
-        </p> <br /> <br />
-        <!-- <div class="card has-text-centered" id="flashcardCard">
-            <div class="card-content">
-                <div class="flip-card-front content is-size-4">
-                Front
-                </div>
-            </div>
-        </div>
-        <div class="card has-text-centered" id="flashcardCard">
-            <div class="card-content">
-                <div class="flip-card-back content is-size-4">
-                Back
-                </div>
-            </div>
-        </div> -->
-
+            Flashcard Set Title
+        </p> 
+    </section>
+    <section class="section">
         <div class="flip-card" id="flippingCard">
-        <div class="flip-card-inner">
-            <div class="flip-card-front is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
-            <p>Front</p>
-            </div>
-            <div class="flip-card-back is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
-            <p>Back</p>
-            </div>
-        </div>
-        </div>
-
-        <!-- <div class="scene">
-            <div class="card" id="flashcards">
-                <div class="card__face card__face--front" onclick='document.querySelector("#flashcards").classList.toggle("is-flipped")'>
-                    Front
+            <div class="flip-card-inner">
+                <div class="flip-card-front is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
+                <p>Front</p>
                 </div>
-                <div class="card__face card__face--back" onclick='document.querySelector("#flashcards").classList.toggle("is-flipped")'>
-                    Back
+                <div class="flip-card-back is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
+                <p>Back</p>
                 </div>
             </div>
-        </div> -->
-
+        </div>
         <br />
         <div class="block has-text-centered" style="height: 2.5rem; line-height: 2.5rem;" id="cardFlipper">
             <button class="button" id="leftFlashcard"><span><i class="fas fa-arrow-left"></i></span></button>
             &nbsp;&nbsp;<span>1/1</span>&nbsp;&nbsp;
             <button class="button" id="rightFlashcard"><span><i class="fas fa-arrow-right"></i></span></button>
         </div>
-      </div>
+    </section>
+    <section class="section" id="cardHolder">
+        <p class="title is-size-5">Terms in this set (#)</p>
+        <div class="box">
+            <div class="level">
+                <p class="right-border" style="width: 40%;">english</p>
+                <p style="width: 60%; padding-left: 1em;">el inglés</p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="level">
+                <p class="right-border" style="width: 40%;">spanish</p>
+                <p style="width: 60%; padding-left: 1em;">el español</p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="level">
+                <p class="right-border" style="width: 40%;">language</p>
+                <p style="width: 60%; padding-left: 1em;">el idioma</p>
+            </div>
+        </div>
     </section>
   </body>
 </html>

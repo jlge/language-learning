@@ -1,17 +1,3 @@
-#flashcardCard {
-    width: 30em;
-    height: 20em;
-    margin: auto;
-    align-items: center;
-    padding: 7em 0;
-}
-
-span#cardFlipper {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal;
-}
-
 #leftFlashcard, #rightFlashcard {
     border: transparent;
 }
@@ -68,5 +54,13 @@ span#cardFlipper {
 }
 
 .flip-card p {
-    padding: 5em 0;
+    padding: 5.5em 0;
+}
+
+#cardHolder {
+    margin: 0 10rem;
+}
+
+.right-border{
+    border-right: 2px solid rgb(255, 224, 210);
 }
