@@ -1,3 +1,15 @@
+let googleUser;
+let numFlashcards = 0;
+
+
+const html = document.querySelector('html')
+const nav = document.querySelector('nav')
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    nav.classList.add('dark-nav');
+}
+
 const addFlashcardBtn = document.querySelector("#addFlashcard");
 const flashcardModal = document.querySelector("#flashcardModal");
 const flashcardModalBody = document.querySelector("#flashcardModalBody");
@@ -7,8 +19,7 @@ const flashcardTitleInput = document.querySelector("#flashcardTitle");
 const flashcardDescrInput = document.querySelector("#flashcardDescription");
 const flashcardSearch = document.querySelector("#flashcardSearch");
 const flashcardDropdown = document.querySelector("#flashcardDropdown");
-let numFlashcards = 0;
-let googleUser;
+
 
 window.onload = (event) => {
   // Use this to retain user state between html pages.
@@ -187,3 +198,10 @@ function removeSet() {
     firebase.database().ref(`users/${googleUser.uid}/flashcard-sets/${set}`).remove();
     toggleDeleteModal(set);
 }
+
+// function showDropdown() {
+//     const dropdown = document.querySelector('.dropdown');
+//     dropdown.classList.toggle("is-active");
+// }
+
+
