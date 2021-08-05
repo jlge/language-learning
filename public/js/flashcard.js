@@ -142,7 +142,7 @@ function renderFlashcard(title, set){
     }
 
     return `
-            <div class="box flashcards" id="set${counter}" onclick='location.href="flashcardpractice.html"'>
+            <div class="box flashcards" id="set${counter}" onclick='toPractice("${title}")'>
                 <div class="has-text-grey">
                     ${numCards} | Created ${set.created}
                 </div>
@@ -151,6 +151,12 @@ function renderFlashcard(title, set){
                 </div>
             </div>       
     `;
+}
+
+function toPractice(flashcardSet) {
+    sessionStorage.setItem("setTitle", flashcardSet);
+    
+    location.href="flashcardpractice.html";
 }
 
 // function showDropdown() {

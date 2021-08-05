@@ -11,7 +11,16 @@
     <title>Flashcard Practice</title>
     <link rel="stylesheet" href="css/flashcardpractice.css" />
     <script src="https://kit.fontawesome.com/8a36ccfe40.js" crossorigin="anonymous"></script>
-    <!-- <script src="/script.js" defer></script> -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
+    <!-- Initialize Firebase -->
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>    
+    <script src="js/flashcardpractice.js" defer></script>
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -24,7 +33,7 @@
             Home
           </a>
           <a class="navbar-item" href="flashcard.html">
-            Flashcard
+            Flashcards
           </a>
           <a class="navbar-item" href="practice.html">
             Practice
@@ -36,47 +45,30 @@
       </div>
     </nav>
     <section class="section">
-        <p class="title">
-            Flashcard Set Title
+        <p class="title" id="cardsetTitle">
         </p> 
     </section>
     <section class="section">
         <div class="flip-card" id="flippingCard">
             <div class="flip-card-inner">
                 <div class="flip-card-front is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
-                <p>Front</p>
+                <p id="cardFront"></p>
                 </div>
                 <div class="flip-card-back is-size-4" onclick='document.querySelector("#flippingCard").classList.toggle("is-active")'>
-                <p>Back</p>
+                <p id="cardBack"></p>
                 </div>
             </div>
         </div>
         <br />
         <div class="block has-text-centered" style="height: 2.5rem; line-height: 2.5rem;" id="cardFlipper">
-            <button class="button" id="leftFlashcard"><span><i class="fas fa-arrow-left"></i></span></button>
-            &nbsp;&nbsp;<span>1/1</span>&nbsp;&nbsp;
-            <button class="button" id="rightFlashcard"><span><i class="fas fa-arrow-right"></i></span></button>
+            <button class="button" id="leftFlashcard" onclick="beforeCard()"><span><i class="fas fa-arrow-left"></i></span></button>
+            &nbsp;&nbsp;<span id="currentCard"></span>&nbsp;&nbsp;
+            <button class="button" id="rightFlashcard" onclick="nextCard()"><span><i class="fas fa-arrow-right"></i></span></button>
         </div>
     </section>
-    <section class="section" id="cardHolder">
-        <p class="title is-size-5">Terms in this set (#)</p>
-        <div class="box">
-            <div class="level">
-                <p class="right-border" style="width: 40%;">english</p>
-                <p style="width: 60%; padding-left: 1em;">el inglés</p>
-            </div>
-        </div>
-        <div class="box">
-            <div class="level">
-                <p class="right-border" style="width: 40%;">spanish</p>
-                <p style="width: 60%; padding-left: 1em;">el español</p>
-            </div>
-        </div>
-        <div class="box">
-            <div class="level">
-                <p class="right-border" style="width: 40%;">language</p>
-                <p style="width: 60%; padding-left: 1em;">el idioma</p>
-            </div>
+    <section class="section">
+        <p class="title is-size-5" id="termNumber"></p><br />
+        <div id="cardHolder">
         </div>
     </section>
   </body>
