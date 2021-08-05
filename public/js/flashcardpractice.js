@@ -16,6 +16,23 @@ window.onload = (event) => {
   });
 };
 
+document.addEventListener('keydown', function(e) {
+    switch (e.keyCode) {
+        case 37:
+            beforeCard();
+            break;
+        case 38:
+            document.querySelector("#flippingCard").classList.add("is-active");
+            break;
+        case 39:
+            nextCard();
+            break;
+        case 40:
+            document.querySelector("#flippingCard").classList.remove("is-active");
+            break;
+    }
+});
+
 function displayFlashcardSet(flashcardSet, userId) {
     console.log("session storage: " + sessionStorage.getItem("setTitle"));
 
@@ -56,7 +73,6 @@ function beforeCard() {
 }
 
 function renderFlipFlashcard(currentCard, data) {
-    console.log("Here")
     let pointer = 0;
     for (const dataKey in data) {
         if (pointer == currentCard) {

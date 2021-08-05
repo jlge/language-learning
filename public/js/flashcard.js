@@ -32,11 +32,16 @@ function toggleModal() {
     flashcardModalBody.scrollTop = 0;
 }
 
+function setUpFlashcards() {
+    addFlashcard(5);    
+}
+
 function addFlashcard(num) {
     card = numFlashcards;
     for (let i = 0; i < num; i++) {
         card += 1;
-        addFlashcardSection.innerHTML += `
+        const wrapper = document.createElement("div");
+        wrapper.innerHTML = `
             <div class="field" id=card${card}>
                 <div class="columns">
                     <div class="column">
@@ -62,6 +67,7 @@ function addFlashcard(num) {
                 </div>
             </div> <br>    
         `;
+        addFlashcardSection.appendChild(wrapper);
     }
     numFlashcards += num;
     //console.log("numcards " + numFlashcards);  
@@ -76,7 +82,7 @@ function createNewSet() {
             cardFront = document.querySelector(`#card${i+1}Front`);
             cardBack = document.querySelector(`#card${i+1}Back`);
             if ((cardFront.value != "") && (cardBack.value != "")) {
-                data += `"${i+1}": {"back":"${cardFront.value}", "front":"${cardBack.value}"},`;
+                data += `"${i+1}": {"back":"${cardBack.value}", "front":"${cardFront.value}"},`;
             } 
         }
         data = data.slice(0, -1) + "},";
@@ -143,9 +149,11 @@ function renderFlashcard(title, set){
 
     return `
             <div class="box flashcards" id="set${counter}" onclick='toPractice("${title}")'>
+            <div class="level">
                 <div class="has-text-grey">
                     ${numCards} | Created ${set.created}
                 </div>
+            </div>
                 <div class="is-size-5">
                     <b>${title}</b>
                 </div>
