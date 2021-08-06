@@ -141,6 +141,7 @@ video {
 
 .modal-card-head {
     background-color: rgba(255, 192, 203);
+}
 #leftFlashcard, #rightFlashcard {
     border: transparent;
 }
