@@ -65,13 +65,17 @@ function displayFlashcardSet(flashcardSet, userId) {
 
 function nextCard() {
     document.querySelector("#flippingCard").classList.remove("is-active");
-    currentCard++;
+    if (currentCard < numTerms){
+        currentCard++;
+    }
     renderFlipFlashcard(currentCard, data);
 }
 
 function beforeCard() {
     document.querySelector("#flippingCard").classList.remove("is-active");
-    currentCard--;
+    if (currentCard >= 1) {
+        currentCard--;
+    }
     renderFlipFlashcard(currentCard, data);
 }
 
@@ -118,7 +122,7 @@ function renderFlashcardBoxes(data) {
 
 function renderIndivFlashcards(data) {
     return `
-        <div class="box">
+        <div class="box indivFlashcard">
             <div class="level">
                 <p class="right-border" style="width: 40%;">${data.front}</p>
                 <p style="width: 60%; padding-left: 1em;">${data.back}</p>

@@ -216,4 +216,12 @@ video {
 
 .navbar-item-2:hover {
     background-color: white;
+    color: #fcb6bd;
 }
+
+.flashcards {
+    background-color: #ffeff6;
+}
+
+.indivFlashcard {
+    background-color: #ffedec;
