@@ -5,6 +5,7 @@ let data;
 
 const html = document.querySelector('html')
 const nav = document.querySelector('nav')
+// const flashcard = document.querySelector('.flashcards');
 
 window.onload = (event) => {
   // Use this to retain user state between html pages.
@@ -134,4 +135,5 @@ function renderIndivFlashcards(data) {
 if (localStorage.getItem('theme') === 'dark') {
     html.classList.add('dark');
     nav.classList.add('dark-nav');
+    // flashcard.classList.add('dark-flashcard');
 }
