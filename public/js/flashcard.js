@@ -75,9 +75,6 @@ function addFlashcard(num) {
                     <div class="column">
                         <label class="label">${card}</label>
                     </div>
-                    <div class="column has-text-right">
-                        <button class="button is-small"><span class="icon"><i class="far fa-trash-alt"></i></span></button>
-                    </div>
                 </div>
                 <div class="field is-horizontal">
                     <div class="field-body">
