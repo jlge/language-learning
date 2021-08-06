@@ -26,8 +26,6 @@ html {
   color: white
 }
 
-
-
 .switched {
   display: flex;
   flex-direction: column;
@@ -200,15 +198,13 @@ video {
   padding-right: 15%;
 }
 
-
 .navbar-item {
   padding: 5% 25% 5% 25%;
 }
 
 .navbar-item:hover {
-    color: fcb6bd;
+    color: #FFDAB9;
 }
-
 
 .navbar-item-2 {
     padding: 20px 30px 20px 30px;
