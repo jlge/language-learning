@@ -1,6 +1,6 @@
 const btn = document.querySelector('#checkbox');
 const html = document.querySelector('html');
-
+const nav = document.querySelector('nav')
 
 btn.addEventListener('click', () => {
     html.classList.toggle('dark');
