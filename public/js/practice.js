@@ -1,6 +1,6 @@
 
-const html = document.querySelector('html')
-const nav = document.querySelector('nav')
+const html = document.querySelector('html');
+const nav = document.querySelector('nav');
 
 const verbsList = ["peck",
 "spell",
@@ -1628,4 +1628,4 @@ function updateScore(data) {
 if (localStorage.getItem('theme') === 'dark') {
     html.classList.add('dark');
     nav.classList.add('dark-nav');
-}
+};

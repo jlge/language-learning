@@ -18,7 +18,7 @@ html {
 }
 
 .dark {
-  background: #fcb6bd;
+  background: #dbc5d6;
 }
 
 .dark-nav {
@@ -49,7 +49,7 @@ input[type=checkbox]{
   border-radius: 3px;
 }
 
-label {
+.labelSwitch {
     display: block;
     width: 16px;
     height: 16px;
@@ -195,15 +195,18 @@ video {
 
 .navbar {
   padding-left: 11%;
-  padding-right: 15%;
+  padding-right: 14%;
 }
 
-.navbar-item {
-  padding: 5% 25% 5% 25%;
+
+.navbar-item-0 {
+    padding: 20px 75px 20px 75px;
+    color: 	#696969;
 }
 
-.navbar-item:hover {
-    color: #FFDAB9;
+.navbar-item-0:hover {
+    color: fcb6bd;
+    background-color: white;
 }
 
 .navbar-item-2 {
