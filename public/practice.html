@@ -7,8 +7,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-
-        <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <link rel="icon" href="https://img.icons8.com/bubbles/2x/language.png" />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script defer src="/__/firebase/8.8.1/firebase-app.js"></script>
     <script defer src="/__/firebase/8.3.1/firebase-auth.js"></script>
     <script defer src="/__/firebase/8.3.1/firebase-database.js"></script>
@@ -20,25 +20,26 @@
 
     <title>Practice</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/practice.js" defer></script>
     <!-- <script src="/script.js" defer></script> -->
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample">
         <div class="navbar-start">
-          <a class="navbar-item" href="settings.html">
+          <a class="navbar-item-0" href="settings.html">
             Settings
           </a>
-          <a class="navbar-item" href="home.html">
+          <a class="navbar-item-0" href="home.html">
             Home
           </a>
-          <a class="navbar-item" href="flashcard.html">
+          <a class="navbar-item-0" href="flashcard.html">
             Flashcards
           </a>
-          <a class="navbar-item" href="practice.html">
+          <a class="navbar-item-0" href="practice.html">
             Practice
           </a>
-          <a class="navbar-item" href="videoCall.html">
+          <a class="navbar-item-0" href="videoCall.html">
             Video Call
           </a>
         </div>
@@ -56,11 +57,22 @@
            The dog <span  class="title has-text-centered" id="infinitive">(to bite) </span><input style="width: 33%;" class="input is-info" placeholder="bites" id="verb-input" type="text"> </input> a tree.
         </p>
 
+<<<<<<< HEAD
         <hr>
          <p class="title has-text-centered"> Your score is: <span id="score"></span></p>
       </div>
     </section>
 
+=======
+        <button id="check-verb" class="button is-danger" onclick="checkVerbMatching()">Submit</button>
+        <button class="button" onclick=newSentence()>Next</button>
+      </div>
+    </section>
+    <br />
+    <br />
+    <br />
+    <br />
+>>>>>>> f8e746408b72e7077dff7fd5aa2f3fb924dab00f
     <div class="box has-text-centered">
           <button id="check-verb" class="button is-info" onclick="checkVerbMatching()">Submit</button>
         <button class="button is-primary" onclick=newSentence()>Next</button>

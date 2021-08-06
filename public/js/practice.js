@@ -1,3 +1,7 @@
+
+const html = document.querySelector('html');
+const nav = document.querySelector('nav');
+
 const verbsList = ["peck",
 "spell",
 "concentrate",
@@ -1685,3 +1689,9 @@ function toggle(number) {
          }, 3000);
     }
 }
+
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    nav.classList.add('dark-nav');
+};

@@ -7,28 +7,29 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-
+    <link rel="icon" href="https://img.icons8.com/bubbles/2x/language.png" />
     <title>Call A Native</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/videoCall.js" defer></script>
     <!-- <script src="/script.js" defer></script> -->
   </head>
-  <body>
+  <body onload="showMyFace()">
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample">
         <div class="navbar-start">
-          <a class="navbar-item" href="settings.html">
+          <a class="navbar-item-0" href="settings.html">
             Settings
           </a>
-          <a class="navbar-item" href="home.html">
+          <a class="navbar-item-0" href="home.html">
             Home
           </a>
-          <a class="navbar-item" href="flashcard.html">
+          <a class="navbar-item-0" href="flashcard.html">
             Flashcards
           </a>
-          <a class="navbar-item" href="practice.html">
+          <a class="navbar-item-0" href="practice.html">
             Practice
           </a>
-          <a class="navbar-item" href="videoCall.html">
+          <a class="navbar-item-0" href="videoCall.html">
             Video Call
           </a>
         </div>
@@ -39,6 +40,13 @@
       <p class="title has-text-centered">
         Practice Speaking with a Native!
       </p>
+    </div>
+    <div class="videocall">
+        <video id="yourVideo" autoplay muted playsinline></video>
+        <video id="friendsVideo" autoplay playsinline></video>
+        <br />
+        <button id= "videocallbtn" onclick="showFriendsFace()" type="button" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Call</button>
+        <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
     </div>
   </body>
 </html>

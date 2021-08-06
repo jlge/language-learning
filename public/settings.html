@@ -7,28 +7,29 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-
+    <link rel="icon" href="https://img.icons8.com/bubbles/2x/language.png" />
     <title>Settings</title>
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/settings.js" defer></script>
     <!-- <script src="/script.js" defer></script> -->
   </head>
   <body>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample">
         <div class="navbar-start">
-          <a class="navbar-item" href="settings.html">
+          <a class="navbar-item-0" href="settings.html">
             Settings
           </a>
-          <a class="navbar-item" href="home.html">
+          <a class="navbar-item-0" href="home.html">
             Home
           </a>
-          <a class="navbar-item" href="flashcard.html">
+          <a class="navbar-item-0" href="flashcard.html">
             Flashcards
           </a>
-          <a class="navbar-item" href="practice.html">
+          <a class="navbar-item-0" href="practice.html">
             Practice
           </a>
-          <a class="navbar-item" href="videoCall.html">
+          <a class="navbar-item-0" href="videoCall.html">
             Video Call
           </a>
         </div>
@@ -42,5 +43,14 @@
         </p>
       </div>
     </section>
+    <div class="switched">
+        <div class="block has-text-centered">
+            <p>Switch color theme</p>
+        </div>
+        <div class="switchBox">
+            <input id="checkbox" type="checkbox">
+            <label class="labelSwitch" for="checkbox"></label>
+        </div>
+    </div>
   </body>
 </html>

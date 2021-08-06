@@ -3,6 +3,10 @@ let currentCard = 0;
 let numTerms = 0;
 let data;
 
+const html = document.querySelector('html')
+const nav = document.querySelector('nav')
+// const flashcard = document.querySelector('.flashcards');
+
 window.onload = (event) => {
   // Use this to retain user state between html pages.
   firebase.auth().onAuthStateChanged(function(user) {
@@ -46,29 +50,53 @@ function displayFlashcardSet(flashcardSet, userId) {
     //     renderFlipFlashcard(currentCard, data);
     // })
 
-    const dbRef = firebase.database().ref(`users/${userId}/flashcard-sets/${flashcardSet}/cards`);
-    dbRef.get().then((snapshot) => {
-    if (snapshot.exists()) {
+    // const dbRef = firebase.database().ref(`users/${userId}/flashcard-sets/${flashcardSet}/cards`);
+    // dbRef.get().then((snapshot) => {
+    // if (snapshot.exists()) {
+    //     data = snapshot.val();
+    //     renderFlashcardBoxes(data);
+    //     renderFlipFlashcard(currentCard, data);
+    // } else {
+    //     console.log("No data available");
+    // }
+    // }).catch((error) => {
+    //     console.error(error);
+    // });
+    
+    const dbRef = firebase.database().ref(`users/${userId}/flashcard-sets/${flashcardSet}/cards`)
+    dbRef.once('value', (snapshot) => {
         data = snapshot.val();
         renderFlashcardBoxes(data);
         renderFlipFlashcard(currentCard, data);
-    } else {
-        console.log("No data available");
-    }
-    }).catch((error) => {
-        console.error(error);
-    });   
+    }).then(() => {
+        const flashcards = document.querySelectorAll('.indivFlashcard');
+        if (localStorage.getItem("theme") == "dark") {
+            for (var i = 0; i < flashcards.length; ++i) {
+                flashcards[i].classList.remove('indivFlashcard-light');
+                flashcards[i].classList.add('indivFlashcard-dark');
+            }
+        } else {
+            for (var i = 0; i < flashcards.length; ++i) {
+                flashcards[i].classList.add('indivFlashcard-light');
+                flashcards[i].classList.remove('indivFlashcard-dark');
+            }            
+        }
+    });
 }
 
 function nextCard() {
     document.querySelector("#flippingCard").classList.remove("is-active");
-    currentCard++;
+    if (currentCard < numTerms){
+        currentCard++;
+    }
     renderFlipFlashcard(currentCard, data);
 }
 
 function beforeCard() {
     document.querySelector("#flippingCard").classList.remove("is-active");
-    currentCard--;
+    if (currentCard >= 1) {
+        currentCard--;
+    }
     renderFlipFlashcard(currentCard, data);
 }
 
@@ -115,11 +143,17 @@ function renderFlashcardBoxes(data) {
 
 function renderIndivFlashcards(data) {
     return `
-        <div class="box">
+        <div class="box indivFlashcard">
             <div class="level">
                 <p class="right-border" style="width: 40%;">${data.front}</p>
                 <p style="width: 60%; padding-left: 1em;">${data.back}</p>
             </div>
         </div>
     `;
+}
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    nav.classList.add('dark-nav');
+    // flashcard.classList.add('dark-flashcard');
 }

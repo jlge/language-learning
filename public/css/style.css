@@ -2,14 +2,95 @@
     background-color: #ffe6f3;
 } */
 
+html {
+  background: #ffdbdf;
+  color: #000;
+}
+
 #id {
     color: white;
 }
 
-#statcard {
+* #statcard {
     height: 20rem;
     width: 20rem;
     margin: auto;
+}
+
+.dark {
+    background: #c5e5ee;
+}
+
+.dark-nav {
+    background: #e3faff;
+    color: white
+}
+
+/* this is what changes the colors */
+.dark-flashcards {
+    background: #d7fcff;
+}
+
+
+.switched {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 25vh;
+  transition: background-color 600ms;
+  
+}
+
+input[type=checkbox]{
+  visibility: hidden;
+  
+}
+
+.switchBox {
+  width: 40px;
+  height: 10px;
+  background: gray;
+  position: relative;
+  border-radius: 3px;
+}
+
+.labelSwitch {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transition: all .6s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    background: #333333;
+
+  
+}
+
+input[type=checkbox]:checked + label {
+    left: 27px;
+    background: #f7f7f7;
+  
+}
+
+
+video {
+  background-color: #ddd;
+  border-radius: 7px;
+  margin: 10px 0px 0px 250px;
+  width: 320px;
+  height: 240px;
+}
+
+#videocallbtn {
+  margin: 20px 0px 0px 360px !important;
+  width: 654px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 8px;
 }
 
 .hidden {
@@ -60,4 +141,144 @@
 
 .modal-card-head {
     background-color: rgba(255, 192, 203);
+#leftFlashcard, #rightFlashcard {
+    border: transparent;
+}
+
+#leftFlashcard:focus, #rightFlashcard:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+#leftFlashcard:hover, #rightFlashcard:hover {
+    color: #ffb4bc;
+}
+
+#leftFlashcard:disabled, #rightFlashcard:disabled {
+    color: 	#A9A9A9;
+}
+
+.flip-card {
+  background-color: transparent;
+  width: 30em;
+  height: 20em;
+  perspective: 1000px;
+  margin: auto;
+  
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.4s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flip-card.is-active .flip-card-inner {
+  transform: rotateX(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: white;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: white;
+  color: black;
+  transform: rotateX(180deg);
+}
+
+.flip-card p {
+    padding: 5.5em 0;
+}
+
+#cardHolder, #termNumber {
+    margin: 0 10rem;
+}
+
+.right-border{
+    border-right: 2px solid rgb(169, 169, 174);
+}
+
+.column, .button {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#flashcardSearch {
+    width: 15rem;
+}
+
+#flashcardSearchDiv {
+    text-align: right;
+}
+
+.flashcards {
+    border-bottom: 0.25rem solid transparent;
+}
+
+.flashcards:hover {
+    border-bottom: 0.25rem solid #ffb4bc;
+    cursor: pointer;
+}
+
+#addFlashcardSet {
+    border: 0.08rem solid #dbdbdb;
+}
+
+#addFlashcardSet:hover {
+    border: 0.08rem solid #ffb4bc;
+}
+
+.navbar {
+  padding-left: 11%;
+  padding-right: 14%;
+}
+
+
+.navbar-item-0 {
+    padding: 20px 75px 20px 75px;
+    color: 	#696969;
+}
+
+.navbar-item-0:hover {
+    background-color: white;
+}
+
+.navbar-item-2 {
+    padding: 20px 30px 20px 30px;
+    color: 	#696969;
+}
+
+.navbar-item-2:hover {
+    background-color: white;
+    color: #fcb6bd;
+}
+
+.flashcards-light {
+    background-color: #ffeff6;
+}
+
+.indivFlashcard {
+    color: #4a4a4a;
+}
+
+.indivFlashcard-light {
+    background-color: #ffedec;
+}
+
+.indivFlashcard-dark {
+    background-color: #b0cfe0;
 }
