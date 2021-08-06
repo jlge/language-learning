@@ -77,7 +77,6 @@ input[type=checkbox]:checked + label {
 }
 
 
-
 video {
   background-color: #ddd;
   border-radius: 7px;
@@ -224,10 +223,18 @@ video {
     color: #fcb6bd;
 }
 
-.flashcards {
+.flashcards-light {
     background-color: #ffeff6;
 }
 
 .indivFlashcard {
+    color: #4a4a4a;
+}
+
+.indivFlashcard-light {
     background-color: #ffedec;
+}
+
+.indivFlashcard-dark {
+    background-color: #b0cfe0;
 }

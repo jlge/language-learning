@@ -50,18 +50,38 @@ function displayFlashcardSet(flashcardSet, userId) {
     //     renderFlipFlashcard(currentCard, data);
     // })
 
-    const dbRef = firebase.database().ref(`users/${userId}/flashcard-sets/${flashcardSet}/cards`);
-    dbRef.get().then((snapshot) => {
-    if (snapshot.exists()) {
+    // const dbRef = firebase.database().ref(`users/${userId}/flashcard-sets/${flashcardSet}/cards`);
+    // dbRef.get().then((snapshot) => {
+    // if (snapshot.exists()) {
+    //     data = snapshot.val();
+    //     renderFlashcardBoxes(data);
+    //     renderFlipFlashcard(currentCard, data);
+    // } else {
+    //     console.log("No data available");
+    // }
+    // }).catch((error) => {
+    //     console.error(error);
+    // });
+    
+    const dbRef = firebase.database().ref(`users/${userId}/flashcard-sets/${flashcardSet}/cards`)
+    dbRef.once('value', (snapshot) => {
         data = snapshot.val();
         renderFlashcardBoxes(data);
         renderFlipFlashcard(currentCard, data);
-    } else {
-        console.log("No data available");
-    }
-    }).catch((error) => {
-        console.error(error);
-    });   
+    }).then(() => {
+        const flashcards = document.querySelectorAll('.indivFlashcard');
+        if (localStorage.getItem("theme") == "dark") {
+            for (var i = 0; i < flashcards.length; ++i) {
+                flashcards[i].classList.remove('indivFlashcard-light');
+                flashcards[i].classList.add('indivFlashcard-dark');
+            }
+        } else {
+            for (var i = 0; i < flashcards.length; ++i) {
+                flashcards[i].classList.add('indivFlashcard-light');
+                flashcards[i].classList.remove('indivFlashcard-dark');
+            }            
+        }
+    });
 }
 
 function nextCard() {

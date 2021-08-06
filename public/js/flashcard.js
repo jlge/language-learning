@@ -5,18 +5,9 @@ let numFlashcards = 0;
 const html = document.querySelector('html');
 const nav = document.querySelector('nav');
 
-// I need this to grab it from the Javascript
-// const flashcards = document.querySelector('.flashcards');
-
-
-
-
-
 if (localStorage.getItem('theme') === 'dark') {
     html.classList.add('dark');
     nav.classList.add('dark-nav');
-    // flashcards.classList.add('.flashcards')
-
 }
 
 
@@ -146,10 +137,24 @@ function clearFlashcardForm() {
 
 function getFlashcardSets(userId) {
     const flashcardsRef = firebase.database().ref(`users/${userId}/flashcard-sets`)
-    flashcardsRef.on('value', (snapshot) => {
+    flashcardsRef.once('value', (snapshot) => {
         const data = snapshot.val();
         renderData(data);
-    })
+    }).then(() =>{
+        const flashcards = document.querySelectorAll('.flashcards');
+        if (localStorage.getItem("theme") == "dark") {
+            for (var i = 0; i < flashcards.length; ++i) {
+                flashcards[i].classList.remove('flashcards-light');
+                flashcards[i].classList.add('dark-flashcards');
+            }
+        } 
+        else {
+            for (var i = 0; i < flashcards.length; ++i) {
+                flashcards[i].classList.add('flashcards-light');
+                flashcards[i].classList.remove('dark-flashcards');
+            }            
+        }
+    });
 }
 
 function renderData(data){

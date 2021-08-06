@@ -3,8 +3,9 @@ const html = document.querySelector('html');
 const nav = document.querySelector('nav');
 
 // I need this to grab it from the Javascript
-// const flashcards = document.querySelector('.flashcards');
-
+const flashcards = document.querySelector('#flashcardSets');
+console.log()
+console.log(flashcards);
 
 btn.addEventListener('click', () => {
     html.classList.toggle('dark');
