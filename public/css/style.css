@@ -18,13 +18,14 @@ html {
 }
 
 .dark {
-  background: #dbc5d6;
+  background: #c5e5ee;
 }
 
 .dark-nav {
-  background: lightgray;
+  background: #e3faff;
   color: white
 }
+
 
 .switched {
   display: flex;
@@ -205,7 +206,6 @@ video {
 }
 
 .navbar-item-0:hover {
-    color: fcb6bd;
     background-color: white;
 }
 
@@ -216,5 +216,4 @@ video {
 
 .navbar-item-2:hover {
     background-color: white;
-    color: #fcb6bd;
 }
