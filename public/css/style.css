@@ -18,12 +18,17 @@ html {
 }
 
 .dark {
-  background: #c5e5ee;
+    background: #c5e5ee;
 }
 
 .dark-nav {
-  background: #e3faff;
-  color: white
+    background: #e3faff;
+    color: white
+}
+
+/* this is what changes the colors */
+.dark-flashcards {
+    background: #d7fcff;
 }
 
 

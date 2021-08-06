@@ -2,8 +2,22 @@ let googleUser;
 let numFlashcards = 0;
 
 
-const html = document.querySelector('html')
-const nav = document.querySelector('nav')
+const html = document.querySelector('html');
+const nav = document.querySelector('nav');
+
+// I need this to grab it from the Javascript
+// const flashcards = document.querySelector('.flashcards');
+
+
+
+
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    nav.classList.add('dark-nav');
+    // flashcards.classList.add('.flashcards')
+
+}
 
 
 const addFlashcardBtn = document.querySelector("#addFlashcard");
@@ -196,9 +210,4 @@ function removeSet() {
 //     dropdown.classList.toggle("is-active");
 // }
 
-
-if (localStorage.getItem('theme') === 'dark') {
-    html.classList.add('dark');
-    nav.classList.add('dark-nav');
-}
 
