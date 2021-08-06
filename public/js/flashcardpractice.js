@@ -3,6 +3,9 @@ let currentCard = 0;
 let numTerms = 0;
 let data;
 
+const html = document.querySelector('html')
+const nav = document.querySelector('nav')
+
 window.onload = (event) => {
   // Use this to retain user state between html pages.
   firebase.auth().onAuthStateChanged(function(user) {
@@ -122,4 +125,9 @@ function renderIndivFlashcards(data) {
             </div>
         </div>
     `;
+}
+
+if (localStorage.getItem('theme') === 'dark') {
+    html.classList.add('dark');
+    nav.classList.add('dark-nav');
 }
