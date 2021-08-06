@@ -51,7 +51,6 @@ const verbsList = ["peck",
 "strap",
 "realize",
 "wail",
-"decay",
 "claim",
 "rub",
 "fix",
@@ -166,8 +165,6 @@ const verbsList = ["peck",
 "chase",
 "balance",
 "pick",
-"tug",
-"pinch",
 "remain",
 "transport",
 "wrestle",
@@ -438,7 +435,6 @@ const verbsList = ["peck",
 "entertain",
 "change",
 "mate",
-"dam",
 "applaud",
 "phone",
 "possess",
@@ -497,8 +493,6 @@ const verbsList = ["peck",
 "pour",
 "stare",
 "collect",
-"drum",
-"mourn",
 "polish",
 "appear",
 "jump",
@@ -1507,8 +1501,9 @@ const sentenceDisplay = document.querySelector("#sentence");
 const infinitiveForm = document.querySelector("#infinitive");
 const verbInput = document.querySelector("#verb-input");
 
-let counter;
+let counter = 0;
 
+let correct = false;
 
 
 function randomArrayPicker(array) {
@@ -1534,7 +1529,11 @@ let sentence;
   fetch(url)
     .then(response => response.json())
     .then(json => {
+    if (json.result == "OK") {
      sentence = json.sentence;
+    } else {
+        newSentence();
+    }
   })
     .catch(error => console.log(error));
 
@@ -1544,11 +1543,15 @@ conjUrl = `https://lt-nlgservice.herokuapp.com/rest/english/conjugate?verb=${ver
     fetch(conjUrl)
     .then(response => response.json())
     .then(json => {
+        console.log (json.result)
+        if(json.result == "OK" && sentence) {        
     for (type in json.conjugation_tables.indicative) {
         if(json.conjugation_tables.indicative[type].heading == "simple present") {
             for (tenseConj in json.conjugation_tables.indicative[type].forms) {
                 if (json.conjugation_tables.indicative[type].forms[tenseConj].includes("he/she/it")) {
                     verbForm = (json.conjugation_tables.indicative[type].forms[tenseConj][1])
+                    console.log("verb form " + verbForm)
+                    console.log(sentence);
                     let infinitive = "(to " + verb + ")";
                     let firstPart = sentence.slice(0, sentence.indexOf(verbForm))
                     let secondPart = sentence.slice(sentence.indexOf(verbForm)+verbForm.length, -1)
@@ -1562,10 +1565,12 @@ conjUrl = `https://lt-nlgservice.herokuapp.com/rest/english/conjugate?verb=${ver
                 }
             }
         }
-        
+    }
+    } else {
+        newSentence();
     }
     
-
+    correct = false;
     
   })
     .catch(error => console.log(error));
@@ -1580,15 +1585,28 @@ function checkVerbMatching() {
     const verbInput = document.querySelector("#verb-input");
     if (verbInput.value == verbForm) {
         console.log("yay!")
+        if (!correct) {
+        counter++;
+        firebase.database().ref(`users/${googleUser.uid}/scores`).set({
+                verbscore: counter
+            })
+        }
+        toggle(1)
+        correct = true;
     } else if (verbInput.value == "bites") {
         console.log("start")
+        toggle(3)
+    } else {
+        toggle(2)
     }
+
 }
 
 let googleUser;
 
+const scoreDisplay = document.querySelector("#score");
+
 window.onload = (event) => {
-getScore();    
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {  
         console.log("logged in as", user.displayName);
@@ -1597,17 +1615,28 @@ getScore();
         window.location = "index.html";
     }
     
+    
+    firebase.database().ref(`users/${googleUser.uid}/scores`).child("verbscore").once('value', function(snapshot) {
+         if (!(snapshot.exists())) {
+            firebase.database().ref(`users/${googleUser.uid}/scores`).set({
+                verbscore: 0
+            })
+                } else {
+             getScore(); 
+
+        }
+        });
+
+
 });
 }
 
 
 
-firebase.database().ref(`users/${googleUser.uid}/scores`).push( {
-    verbscore: counter
-}) 
+
 
 function getScore () {
-  const notesRef = firebase.database().ref(`users/${userId}/scores`);
+  const notesRef = firebase.database().ref(`users/${googleUser.uid}/scores`);
   notesRef.on('value', (snapshot) => {
     const data = snapshot.val();
     updateScore(data);
@@ -1615,8 +1644,44 @@ function getScore () {
 }
 
 function updateScore(data) {
-    for (x in data) {
-        console.log(data[x])
+    counter = (data.verbscore);
+    scoreDisplay.innerHTML = counter;  
+
+}
+
+
+function toggle(number) {
+    
+    const modal = document.querySelector("#modal");
+    const modalBackground = document.querySelector(".modal-background");
+    const modalCard = document.querySelector(".modal-card-head")
+    const answer = document.querySelector("#answer");
+    if (number ==1  ) {
+        modalBackground.classList.add("is-correct-background")
+        modalCard.style.backgroundColor = "MediumSeaGreen";
+        modalBackground.classList.remove("is-wrong-background")
+        answer.innerHTML = "Correct!"
+    } else if (number == 2) {
+        modalBackground.classList.remove("is-correct-background")
+        modalCard.style.backgroundColor = "IndianRed";
+        modalBackground.classList.add("is-wrong-background")
+        answer.innerHTML = "Incorrect :("
+
+    } else if (number == 3) {
+        modalBackground.classList.remove("is-wrong-background")
+        modalCard.style.backgroundColor = "LightPink";
+        answer.innerHTML = "You've got it! Press next to try some on your own."
     }
 
+    modal.classList.toggle('is-active');
+
+    if(modal.classList.contains("is-active") && number < 3) {
+        setTimeout(function () {
+        modal.classList.toggle('is-active');
+         }, 1000);
+    } else {
+         setTimeout(function () {
+        modal.classList.toggle('is-active');
+         }, 3000);
+    }
 }

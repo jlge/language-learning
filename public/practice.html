@@ -15,6 +15,8 @@
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#available-libraries -->
     <script defer src="/__/firebase/8.8.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+    
 
     <title>Practice</title>
     <link rel="stylesheet" href="css/style.css" />
@@ -54,18 +56,28 @@
            The dog <span  class="title has-text-centered" id="infinitive">(to bite) </span><input style="width: 33%;" class="input is-info" placeholder="bites" id="verb-input" type="text"> </input> a tree.
         </p>
 
-        <button id="check-verb" class="button is-info" onclick="checkVerbMatching()">Submit</button>
-        <button class="button is-primary" onclick=newSentence()>Next</button>
-
+        <hr>
+         <p class="title has-text-centered"> Your score is: <span id="score"></span></p>
       </div>
     </section>
-    <br />
-    <br />
-    <br />
-    <br />
 
     <div class="box has-text-centered">
+          <button id="check-verb" class="button is-info" onclick="checkVerbMatching()">Submit</button>
+        <button class="button is-primary" onclick=newSentence()>Next</button>
     </div>
+
+    <div id ="modal" class="modal">
+        <div class="modal-background"></div>
+       <div class="modal-card">
+           <header class="modal-card-head">
+      <p id = "answer" class="modal-card-title has-text-centered"></p>
+      </header>
+    </div>
+    </div>
+
+
+
+
     <script src="js/practice.js"></script>
   </body>
 </html>
